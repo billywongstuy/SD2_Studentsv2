@@ -1,0 +1,5 @@
+Students
+name, age, id
+
+Courses
+code, mark, id
