@@ -1,8 +1,11 @@
+
 from pymongo import MongoClient
 from collections import defaultdict
 from pprint import pprint
 import urllib2
 import csv
+
+
 
 def getPeepsDicts():
     peepsFile = open("data/peeps.csv")
@@ -18,6 +21,7 @@ def getPeepsDicts():
     return peeps
 
 
+
 def getCoursesDicts():
     coursesFile = open("data/courses.csv")
     courseReader = csv.DictReader(coursesFile)
@@ -30,6 +34,7 @@ def getCoursesDicts():
         courses.append(pInfo)
     coursesFile.close()
     return courses
+
 
 
 # pair peeps info with courses info
@@ -53,6 +58,7 @@ def getAllStudentInfo():
     return d.values()
     
 
+
 def isLocalConnection():
     try:
         urllib2.urlopen('http://lisa.stuy.edu', timeout=1)
@@ -60,6 +66,8 @@ def isLocalConnection():
     except urllib2.URLError as err: 
         return False
 
+
+    
 if __name__ == "__main__":
     allStudentInfo = getAllStudentInfo()
     pprint(allStudentInfo)
