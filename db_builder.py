@@ -66,7 +66,8 @@ if __name__ == "__main__":
     
     if isLocalConnection():
         c = MongoClient('lisa.stuy.edu', 27017)
-        db = c['pokeMONGO_champions']   
+        db = c['pokeMONGO_champions']
+        db.students.drop()
         db.students.insert_many( getAllStudentInfo() )
     else:
         print "Not in Lisa :( ssh there first!"
