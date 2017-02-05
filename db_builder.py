@@ -51,5 +51,5 @@ if __name__ == "__main__":
     c = MongoClient('lisa.stuy.edu', 27017)
     db = c['pokeMONGO_champions']   
     pprint( getAllStudentInfo() )
-    db.foo.insert_many( getAllStudentInfo() )
+    db.students.insert_many( getAllStudentInfo() )
     print "Done."
