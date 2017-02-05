@@ -23,7 +23,7 @@ def getCoursesDicts():
     courseReader = csv.DictReader(coursesFile)
     courses = []
     for course in courseReader:
-        pInfo = defaultdict(list)
+        pInfo = {}
         pInfo["code"] = course["code"]
         pInfo["mark"] = course["mark"]
         pInfo["id"] = course["id"]
