@@ -52,9 +52,6 @@ def getAllStudentInfo():
         # courses goes into "courses" list in student dict
         d[id_from_course]["courses"].append( course )
 
-    for accumStudentInfo in d.values():
-        accumStudentInfo.pop("id") #let mongo add its own ObjectId
-
     return d.values()
     
 
