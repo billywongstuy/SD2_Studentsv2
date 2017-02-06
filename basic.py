@@ -1,7 +1,7 @@
+from __future__ import division
 from pymongo import MongoClient
 from collections import defaultdict
 from pprint import pprint
-from __future__ import division
 import urllib2
 import db_builder
 
@@ -10,18 +10,23 @@ c = MongoClient('lisa.stuy.edu', 27017)
 db = c['pokeMONGO_champions']
 
 if __name__ == "__main__":
-    allStudentInfo = getAllStudentInfo()
-    
-    if isLocalConnection():
+
+    if db_builder.isLocalConnection():
+        print "NAME" + 12*" " +"ID\tAVERAGE"
+        print '-' * 35
         students = db.students.find()
         for student in students:
             courses = student["courses"]
             totalScore = 0
             totalAmt = 0
             for course in courses:
-                totalScore += grade["mark"]
+                totalScore += int(course["mark"])
                 totalAmt += 1
-            print "%s | %s | %d" % (student["name"], student["id"], totalScore / totalAmt)
+            name = student["name"]
+            diff = 15-len(name)
+            name += diff*" "
+            average = totalScore / totalAmt
+            print "%s\t%s\t%d" % (name, student["id"], average)
     else:
         print "Not in Lisa :( ssh there first!"
         
