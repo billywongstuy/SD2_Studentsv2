@@ -37,8 +37,11 @@ if __name__ == "__main__":
         db.teachers.drop()
         for teacher in allTeachersInfo:
             studentsInCourse = db.students.find( {"courses.code" : teacher.code} )
+            ids = []
             for student in studentsInCourse:
-                pass #CHANGE THIS
+                ids.append(student["id"])
+            teacher["sIds"] = ids
+        pass #UNTESTED  
     else:
         print "Not in Lisa :( ssh there first!"
     print "Done."
