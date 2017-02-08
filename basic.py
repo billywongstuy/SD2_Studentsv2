@@ -27,6 +27,17 @@ if __name__ == "__main__":
             name += diff*" "
             average = totalScore / totalAmt
             print "%s\t%s\t%d" % (name, student["id"], average)
+            
+            
+        db.teachers.drop()
+        for teacher in allTeachersInfo:
+            studentsInCourse = db.students.find( {"courses.code" : teacher["code"]} )
+            ids = []
+            for student in studentsInCourse:
+                ids.append(int(student["id"]))
+            teacher["sIds"] = ids
+        db.teachers.insert_many( allTeachersInfo )
+            
     else:
         print "Not in Lisa :( ssh there first!"
         
