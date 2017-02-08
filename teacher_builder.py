@@ -39,7 +39,7 @@ if __name__ == "__main__":
             studentsInCourse = db.students.find( {"courses.code" : teacher["code"]} )
             ids = []
             for student in studentsInCourse:
-                ids.append(int(student["id"]))
+                ids.append(student["id"])
             teacher["sIds"] = ids
         db.teachers.insert_many( allTeachersInfo )
     else:
