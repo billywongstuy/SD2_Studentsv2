@@ -6,7 +6,7 @@ import csv
 
 def getTeachersDicts():
     teachersFile = open("data/teachers.csv")
-    teachersReader = csv.DictReader(teachersFile)
+    teacherReader = csv.DictReader(teachersFile)
     teachers = []
     for teacher in teacherReader:
         pInfo = defaultdict(list)
@@ -36,13 +36,12 @@ if __name__ == "__main__":
         db = c['pokeMONGO_champions']
         db.teachers.drop()
         for teacher in allTeachersInfo:
-            studentsInCourse = db.students.find( {"courses.code" : teacher.code} )
+            studentsInCourse = db.students.find( {"courses.code" : teacher["code"]} )
             ids = []
             for student in studentsInCourse:
-                ids.append(student["id"])
+                ids.append(int(student["id"]))
             teacher["sIds"] = ids
-        db.students.insert_many( allTeachersInfo )
-        pass #UNTESTED  
+        db.teachers.insert_many( allTeachersInfo )
     else:
         print "Not in Lisa :( ssh there first!"
     print "Done."
