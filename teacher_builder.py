@@ -41,6 +41,7 @@ if __name__ == "__main__":
             for student in studentsInCourse:
                 ids.append(student["id"])
             teacher["sIds"] = ids
+        db.students.insert_many( allTeachersInfo )
         pass #UNTESTED  
     else:
         print "Not in Lisa :( ssh there first!"
