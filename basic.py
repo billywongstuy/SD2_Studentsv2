@@ -9,6 +9,20 @@ import db_builder
 c = MongoClient('lisa.stuy.edu', 27017)
 db = c['pokeMONGO_champions']
 
+
+def getTeachersDicts():
+    teachersFile = open("data/teachers.csv")
+    teacherReader = csv.DictReader(teachersFile)
+    teachers = []
+    for teacher in teacherReader:
+        pInfo = defaultdict(list)
+        pInfo["code"] = teacher["code"]
+        pInfo["teacher"] = teacher["teacher"]
+        pInfo["period"] = teacher["period"]
+        teachers.append(pInfo)
+    teachersFile.close()
+    return teachers
+
 if __name__ == "__main__":
 
     if db_builder.isLocalConnection():
@@ -28,7 +42,9 @@ if __name__ == "__main__":
             average = totalScore / totalAmt
             print "%s\t%s\t%d" % (name, student["id"], average)
             
-            
+        allTeachersInfo = getTeachersDicts()
+        pprint(allTeachersInfo) 
+        
         db.teachers.drop()
         for teacher in allTeachersInfo:
             studentsInCourse = db.students.find( {"courses.code" : teacher["code"]} )
