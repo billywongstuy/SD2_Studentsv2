@@ -4,7 +4,7 @@ from collections import defaultdict
 from pprint import pprint
 import urllib2
 import db_builder
-
+import csv
 
 c = MongoClient('lisa.stuy.edu', 27017)
 db = c['pokeMONGO_champions']
